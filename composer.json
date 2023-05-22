@@ -2,6 +2,11 @@
     "name": "commonpike/multipackage",
     "description" : "Example/ test to manage multiple package from one repo",
     "type": "library",
+    "scripts": {
+    	"ready": [
+			"echo Composer ready"
+		]
+    },
     "require": {
         "twig/twig": "^3.0",
         "symfony/yaml": "^5.1",
