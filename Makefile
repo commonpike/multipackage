@@ -1,7 +1,9 @@
 version ?= version
 
 install:
+	@echo
 	composer install
+	@echo
 	npm install
 
 compile-css:

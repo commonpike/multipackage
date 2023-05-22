@@ -6,35 +6,7 @@ on:
     types: 
       - released
 
-#jobs:
-#  publish:
-#    runs-on: ubuntu-18.04
-#    steps:
-#      - uses: actions/checkout@v2
-#      - uses: actions/setup-node@v1
-#        with:
-#          node-version: 14.17
-#      - run: npm install
-#      - run: npx semantic-release
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
 jobs:
-  #debug:
-  #  name: Debug
-  #  runs-on: ubuntu-latest
-  #  steps:
-  #    - name: Dump env
-  #      run: env | sort
-  #    - name: Dump GitHub context
-  #      env:
-  #        GITHUB_CONTEXT: ${{ toJson(github) }}
-  #        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #        NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #      run: echo "$GITHUB_CONTEXT"
-  #    - name: Echo release tag
-  #      run: echo ${{ github.event.release.tag_name }} ${{ secrets.GITHUB_TOKEN }}
   release:
     name: Release
     runs-on: ubuntu-latest
@@ -43,14 +15,15 @@ jobs:
       - uses: actions/setup-node@v3
       - uses: php-actions/composer@v6
         with:
-          command: ready
+          command: nop
       - run: make install
       - run: make compile
       - run: make packages
-      #- name: Make release
-      #  env:
-      #    GITHUB_CONTEXT: ${{ toJson(github) }}
-      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #    NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #  run: make release version=${{ github.event.release.tag_name }}
+      - name: Setup .npmrc
+          run: |
+            echo '//npm.pkg.github.com/:_authToken=${NPM_TOKEN}' > .npmrc
+            echo '@commonpike:registry=https://npm.pkg.github.com/' >> .npmrc
+      - run: make release version=${{ github.event.release.tag_name }}
+        env:
+          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       

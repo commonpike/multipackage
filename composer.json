@@ -3,9 +3,7 @@
     "description" : "Example/ test to manage multiple package from one repo",
     "type": "library",
     "scripts": {
-    	"ready": [
-			"echo Composer ready"
-		]
+    	"nop": []
     },
     "require": {
         "twig/twig": "^3.0",
