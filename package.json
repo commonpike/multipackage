@@ -2,8 +2,6 @@
   "name": "@commonpike/multipackage",
   "version": "0.0.2",
   "private": true,
-  "scripts": {},
-  "dependencies": {},
   "devDependencies": {
     "node-sass": "^7.0"
   }
