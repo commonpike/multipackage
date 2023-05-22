@@ -1,5 +1,4 @@
-type ?= patch
-SEMANTIC_VERSION = $(type)
+version ?= version
 
 install:
 	composer install
@@ -82,15 +81,15 @@ release:
 
 	@echo
 	@echo Releasing pds-compiled ..
-	cd build/pds-compiled && npm version $(SEMANTIC_VERSION)
+	cd build/pds-compiled && npm version $(version)
 	npm publish ./build/pds-compiled
 
 	@echo
 	@echo Releasing pds-source ..
-	cd build/pds-source && npm version $(SEMANTIC_VERSION)
+	cd build/pds-source && npm version $(version)
 	npm publish ./build/pds-source
 
 	@echo
 	@echo Releasing pds-docs ..
-	cd build/pds-docs && npm version $(SEMANTIC_VERSION)
+	cd build/pds-docs && npm version $(version)
 	npm publish ./build/pds-docs

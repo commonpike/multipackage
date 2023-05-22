@@ -36,3 +36,11 @@ That requires
 Packaging is set up following
 
 https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#publishing-multiple-packages-to-the-same-repository
+
+## releasing
+
+Releasing is done using Github actions, on Release.
+However, if you want to release from the command line,
+you can, using `make release`; it would require a 
+github token with packages privileges to be set in 
+`.npmrc` in this repo; see `.npmrc-dist` for an example.
