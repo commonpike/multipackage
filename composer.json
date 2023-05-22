@@ -1,0 +1,10 @@
+{
+    "name": "commonpike/multipackage",
+    "description" : "Example/ test to manage multiple package from one repo",
+    "type": "library",
+    "require": {
+        "twig/twig": "^3.0",
+        "symfony/yaml": "^5.1",
+        "twig/html-extra": "^3.0"
+	}
+}
