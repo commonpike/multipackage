@@ -20,7 +20,7 @@ jobs:
       - run: make compile
       - run: make packages
       - name: Setup .npmrc
-          run: |
+        run: |
             echo '//npm.pkg.github.com/:_authToken=${NPM_TOKEN}' > .npmrc
             echo '@commonpike:registry=https://npm.pkg.github.com/' >> .npmrc
       - run: make release version=${{ github.event.release.tag_name }}
