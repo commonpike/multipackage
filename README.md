@@ -24,9 +24,9 @@ That requires
 - make packages \
   copies files to various `/build/(package)`
 
-- make release [type=$type]\
-  calls `npm version $type && npm publish` to github for each package \
-  type = patch|minor|major
+- make release [version=$version]\
+  calls `npm version $version && npm publish` to github for each package \
+  this is typically done automatically by a github action
 
 - make clean \
   remove generated files in `/build/(package)`, `src/assets/css` and `src/docs/html`
@@ -39,7 +39,7 @@ https://docs.github.com/en/packages/working-with-a-github-packages-registry/work
 
 ## releasing
 
-Releasing is done using Github actions, on Release.
+Releasing is done using a Github action, on `Release`.
 However, if you want to release from the command line,
 you can, using `make release`; it would require a 
 github token with packages privileges to be set in 
