@@ -16,15 +16,15 @@ jobs:
       - uses: php-actions/composer@v6
         with:
           command: nop
-      - run: make install
-      - run: make compile
-      - run: make packages
-      - name: Prepare release
+      - name: Prepare environment
         run: |
             echo '//npm.pkg.github.com/:_authToken=${NPM_TOKEN}' > .npmrc
             echo '@commonpike:registry=https://npm.pkg.github.com/' >> .npmrc
             git config --global user.name "${GITHUB_ACTOR}"
             git config --global user.email "${GITHUB_ACTOR_ID}+${GITHUB_ACTOR}@users.noreply.github.com"
+      - run: make install
+      - run: make compile
+      - run: make packages
       - run: make release version=${{ github.event.release.tag_name }}
         env:
           NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}

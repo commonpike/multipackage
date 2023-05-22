@@ -1,0 +1,7 @@
+{
+  "name": "@commonpike/multipackage-compiled",
+  "repository": "https://github.com/commonpike/multipackage",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  }
+}
