@@ -6,17 +6,17 @@ install:
 	npm install
 
 compile-css:
+	@echo
 	node_modules/node-sass/bin/node-sass \
 		--output-style compressed \
 		src/assets/sass/main.scss \
 		src/assets/css/main.css
 
 compile-html:
+	@echo
 	php src/php/compile-html.php
 
-compile:
-	compile-css
-	compile-html
+compile: compile-css compile-html
 
 packages:
 	mkdir -p build/compiled
