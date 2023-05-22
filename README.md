@@ -7,7 +7,6 @@ That requires
 - make
 - npm
 - composer
-- npx
 
 ## make commands
 
