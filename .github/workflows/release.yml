@@ -19,10 +19,12 @@ jobs:
       - run: make install
       - run: make compile
       - run: make packages
-      - name: Setup .npmrc
+      - name: Prepare release
         run: |
             echo '//npm.pkg.github.com/:_authToken=${NPM_TOKEN}' > .npmrc
             echo '@commonpike:registry=https://npm.pkg.github.com/' >> .npmrc
+            git config --global user.name "${GITHUB_ACTOR}"
+            git config --global user.email "${GITHUB_ACTOR_ID}+${GITHUB_ACTOR}@users.noreply.github.com"
       - run: make release version=${{ github.event.release.tag_name }}
         env:
           NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
