@@ -19,28 +19,30 @@ compile:
 	compile-html
 
 packages:
-	mkdir -p build/package1
-	rm -r build/package1/assets
-	mkdir build/package1/assets
+	mkdir -p build/compiled
+	rm -r build/compiled/assets
+	mkdir build/compiled/assets
 	cp -r src/assets/css \
 		src/assets/javascript \
 		src/assets/images \
-		build/package1/assets 
+		build/compiled/assets 
 
-	mkdir -p build/package2
-	rm -r build/package2/assets
-	mkdir build/package2/assets
+	mkdir -p build/source
+	rm -r build/source/assets
+	mkdir build/source/assets
 	cp -r src/assets/javascript \
 		src/assets/images \
 		src/assets/sass \
-		build/package2/assets
+		build/source/assets
 
 	mkdir -p build/docs
 	rm -r build/docs/html
 	cp -r src/docs/html build/docs
 
 release:
-	cd build/package1
+	cd build/compile
 	#npx release bla
-	cd build/package2
+	cd build/source
+	#npx release bla
+	cd build/docs
 	#npx release bla
