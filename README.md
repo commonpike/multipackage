@@ -24,7 +24,7 @@ That requires
   copies files to various `/build/(package)`
 
 - make release tag=$tag\
-  either calls `npm version $tag && npm publish` to github for each package \
+  either calls `npm version $tag && npm publish` to github for each package 
   and/or calls `hub release edit -a *tgz` for each zipped package.
   this target is called by a github action, see below
 
@@ -46,11 +46,11 @@ Releasing is done using a Github action, on `Release`.
 Use the  Github UI to create a new release. Make sure
 to use a valid semantic version as a tag name (for NPM).
 
-A new release creates **npm packages** and **github release assets**
+A new release creates either **npm packages** and/or **github release assets**
 for every build in the build dir.
 
-If you want to call the `make release` target from the command 
+If you want to call the `make release $version` target from the command 
 line, you can; it would require a  github token with packages 
 privileges to be set in  `.npmrc` in this repo; see `.npmrc-dist` 
 for an example; and the `hub` command installed. Also a release with
-version (version) would already have to exist on github.
+version $version would already have to exist on github.
