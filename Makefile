@@ -87,7 +87,7 @@ release:
 	cd build/pds-compiled && npm version $(version)
 	npm publish ./build/pds-compiled
 	tar -cvzf ./build/pds-compiled.tgz ./build/pds-compiled
-	#hub release edit -a ./build/pds-compiled.tgz -m "" $(version)
+	hub release edit -a ./build/pds-compiled.tgz -m "" $(version)
 
 	@echo
 	@echo Releasing pds-source ..
