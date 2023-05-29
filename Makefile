@@ -8,6 +8,9 @@ version = $(major).$(minor).$(patch)
 
 packages = pds-compiled pds-source pds-docs
 
+# uncomment this on mac
+# SEDFIX=''
+
 test:
 	@echo $(tag) - $(semver) - $(version)
 	$(foreach package,$(packages),echo $(package);)
@@ -55,7 +58,7 @@ package-pds-compiled:
 		build/pds-compiled/assets 
 	rm -f build/pds-compiled/assets/css/README.md
 	cp build/package.json.tpl build/pds-compiled/package.json
-	@sed -i 's/##PACKAGE-NAME##/multipackage-compiled/' build/pds-compiled/package.json
+	sed -i $(SEDFIX) 's/##PACKAGE-NAME##/multipackage-compiled/' build/pds-compiled/package.json
 
 package-pds-source:
 	@echo
@@ -66,7 +69,7 @@ package-pds-source:
 		src/assets/sass \
 		build/pds-source/assets
 	cp build/package.json.tpl build/pds-source/package.json
-	@sed -i 's/##PACKAGE-NAME##/multipackage-source/' build/pds-source/package.json
+	sed -i $(SEDFIX) 's/##PACKAGE-NAME##/multipackage-source/' build/pds-source/package.json
 
 package-pds-docs:
 	@echo
@@ -75,7 +78,7 @@ package-pds-docs:
 	cp -r src/docs/html build/pds-docs
 	rm -f build/pds-docs/html/README.md
 	cp build/package.json.tpl build/pds-docs/package.json
-	@sed -i 's/##PACKAGE-NAME##/multipackage-docs/' build/pds-docs/package.json
+	sed -i $(SEDFIX) 's/##PACKAGE-NAME##/multipackage-docs/' build/pds-docs/package.json
 
 release:
 
