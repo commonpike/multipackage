@@ -89,7 +89,7 @@ release-pds-compiled:
 
 	@echo
 	@echo Releasing pds-compiled ..
-	@if [ ! -d "build/pds-compiled/assets" ] ; then echo "build/pds-compiled not ready" ; false ; fi
+	@if [ ! -d "build/pds-compiled" ] ; then echo "build/pds-compiled not ready" ; false ; fi
 	cd build/pds-compiled && npm version $(version)
 	npm publish ./build/pds-compiled
 	tar -cvzf ./build/pds-compiled.tgz ./build/pds-compiled
@@ -99,7 +99,7 @@ release-pds-source:
 
 	@echo
 	@echo Releasing pds-source ..
-	@if [ ! -d "build/pds-source/assets" ] ; then echo "build/pds-source not ready" ; false ; fi
+	@if [ ! -d "build/pds-source" ] ; then echo "build/pds-source not ready" ; false ; fi
 	cd build/pds-source && npm version $(version)
 	npm publish ./build/pds-source
 	tar -cvzf ./build/pds-source.tgz ./build/pds-source
@@ -109,7 +109,7 @@ release-pds-docs:
 
 	@echo
 	@echo Releasing pds-docs ..
-	@if [ ! -d "build/pds-docs/html" ] ; then echo "build/pds-docs not ready" ; false ; fi
+	@if [ ! -d "build/pds-docs" ] ; then echo "build/pds-docs not ready" ; false ; fi
 	cd build/pds-docs && npm version $(version)
 	npm publish ./build/pds-docs
 	tar -cvzf ./build/pds-docs.tgz ./build/pds-docs
