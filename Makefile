@@ -77,7 +77,7 @@ packages:
 
 release:
 
-  @if test -z "$(version)"; then echo "make release requires a version"; false ; fi
+	@if test -z "$(version)"; then echo "make release requires a version"; false ; fi
 	@if [ ! -d "build/pds-compiled/assets" ] ; then echo "build/pds-compiled not ready" ; false ; fi
 	@if [ ! -d "build/pds-source/assets" ] ; then echo "build/pds-source not ready" ; false ; fi
 	@if [ ! -d "build/pds-docs/html" ] ; then echo "build/pds-docs not ready" ; false ; fi
