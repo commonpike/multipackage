@@ -1,3 +1,1 @@
-# DOCS
-
-The HTML Docs will be generated here.
+The HTML will be generated here.

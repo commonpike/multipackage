@@ -20,23 +20,25 @@ That requires
   - make compile-html\
     using php, compiles twig to html in `src/docs/html`
 
-- make build \
-  copies files to various `/build/(build)`
-  creates tar files of each build
+- make packages \
+  copies files to various `/build/(package)`
 
 - make release tag=$tag\
-  calls `npm version $tag && npm publish` to github for each package \
-  and `hub release edit -a *tgz` for each zipped package.
+  either calls `npm version $tag && npm publish` to github for each package \
+  and/or calls `hub release edit -a *tgz` for each zipped package.
   this target is called by a github action, see below
 
 - make clean \
-  remove generated files in `/build/(build)`, `src/assets/css` and `src/docs/html`
+  remove generated files in `/build/(package)`, `src/assets/css` and `src/docs/html`
 
 ## packaging
 
 Packaging is set up following
 
 https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#publishing-multiple-packages-to-the-same-repository
+
+To add a new package, create new targets in the makefile
+for `package-YOURPACKAGE` and `release-YOURPACKAGE`
 
 ## releasing
 

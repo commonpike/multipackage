@@ -31,12 +31,8 @@ compile-html:
 	@echo
 	php src/php/compile-html.php
 
-clean: clean-assets clean-build
-
-clean-assets:
-
-	@echo
-	@echo Cleaning assets ..
+clean: 
+	rm -r ./build/*/
 
 	rm -rf src/assets/css/*
 	echo "The CSS will be generated here." >> src/assets/css/README.md
@@ -44,29 +40,14 @@ clean-assets:
 	rm -rf src/docs/html/*
 	echo "The HTML will be generated here." >> src/docs/html/README.md
 
-clean-build:
-
-	@echo
-	@echo Cleaning build dir ..
-
-	mkdir -p build/pds-compiled
-	rm -rf build/pds-compiled/assets
-
-	mkdir -p build/pds-source
-	rm -rf build/pds-source/assets
-
-	mkdir -p build/pds-docs
-	rm -rf build/pds-docs/html
-
 packages:
-	make clean-build
+	rm -rf ./build/*/
 	$(foreach package,$(packages),make package-$(package);)
 
 package-pds-compiled:
 	@echo
 	@echo Building pds-compiled ..
 	@if [ ! -f "src/assets/css/main.css" ] ; then echo "Compile css first" ; false ; fi
-	mkdir -p build/pds-compiled
 	mkdir -p build/pds-compiled/assets
 	cp -r src/assets/css \
 		src/assets/javascript \
@@ -79,7 +60,7 @@ package-pds-compiled:
 package-pds-source:
 	@echo
 	@echo Building pds-source ..
-	mkdir build/pds-source/assets
+	mkdir -p build/pds-source/assets
 	cp -r src/assets/javascript \
 		src/assets/images \
 		src/assets/sass \
