@@ -25,7 +25,8 @@ That requires
 
 - make release [version=$version]\
   calls `npm version $version && npm publish` to github for each package \
-  this is typically done automatically by a github action
+  and `hub release edit -a *tgz` for each zipped package.
+  this target is called by a github action, see below
 
 - make clean \
   remove generated files in `/build/(package)`, `src/assets/css` and `src/docs/html`
@@ -39,7 +40,10 @@ https://docs.github.com/en/packages/working-with-a-github-packages-registry/work
 ## releasing
 
 Releasing is done using a Github action, on `Release`.
-However, if you want to release from the command line,
-you can, using `make release`; it would require a 
+
+If you want to call the target from the command line,
+you can, using `make release (tag)`; it would require a 
 github token with packages privileges to be set in 
-`.npmrc` in this repo; see `.npmrc-dist` for an example.
+`.npmrc` in this repo; see `.npmrc-dist` for an example;
+and the `hub` command installed. Also the release with
+tag (tag) would already have to exist on github.

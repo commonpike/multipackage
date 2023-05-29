@@ -77,6 +77,7 @@ packages:
 
 release:
 
+  @if test -z "$(version)"; then echo "make release requires a version"; false ; fi
 	@if [ ! -d "build/pds-compiled/assets" ] ; then echo "build/pds-compiled not ready" ; false ; fi
 	@if [ ! -d "build/pds-source/assets" ] ; then echo "build/pds-source not ready" ; false ; fi
 	@if [ ! -d "build/pds-docs/html" ] ; then echo "build/pds-docs not ready" ; false ; fi
@@ -85,13 +86,19 @@ release:
 	@echo Releasing pds-compiled ..
 	cd build/pds-compiled && npm version $(version)
 	npm publish ./build/pds-compiled
+	tar -cvzf ./build/pds-compiled.tgz ./build/pds-compiled
+	hub release edit -a ./build/pds-compiled.tgz -m "" $(version)
 
 	@echo
 	@echo Releasing pds-source ..
 	cd build/pds-source && npm version $(version)
 	npm publish ./build/pds-source
+	tar -cvzf ./build/pds-source.tgz ./build/pds-source
+	hub release edit -a ./build/pds-source.tgz -m "" $(version)
 
 	@echo
 	@echo Releasing pds-docs ..
 	cd build/pds-docs && npm version $(version)
 	npm publish ./build/pds-docs
+	tar -cvzf ./build/pds-docs.tgz ./build/pds-docs
+	hub release edit -a ./build/pds-docs.tgz -m "" $(version)
