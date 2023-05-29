@@ -58,7 +58,7 @@ clean-build:
 
 clean: clean-assets clean-build
 
-package:
+packages:
 	make clean-build
 	$(foreach package,$(packages),make package-$(package);)
 
