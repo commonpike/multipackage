@@ -31,4 +31,5 @@ jobs:
       - run: make release version=${{ github.event.release.tag_name }}
         env:
           NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: hub release edit -a ./build/pds-compiled.tgz -m "" ${{ github.event.release.tag_name }}
       
