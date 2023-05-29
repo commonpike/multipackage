@@ -18,6 +18,8 @@ install:
 	@echo
 	npm install
 
+compile: compile-css compile-html
+
 compile-css:
 	@echo
 	node_modules/node-sass/bin/node-sass \
@@ -29,7 +31,7 @@ compile-html:
 	@echo
 	php src/php/compile-html.php
 
-compile: compile-css compile-html
+clean: clean-assets clean-build
 
 clean-assets:
 
@@ -56,8 +58,6 @@ clean-build:
 	mkdir -p build/pds-docs
 	rm -rf build/pds-docs/html
 
-clean: clean-assets clean-build
-
 packages:
 	make clean-build
 	$(foreach package,$(packages),make package-$(package);)
@@ -65,13 +65,16 @@ packages:
 package-pds-compiled:
 	@echo
 	@echo Building pds-compiled ..
-	mkdir build/pds-compiled/assets
 	@if [ ! -f "src/assets/css/main.css" ] ; then echo "Compile css first" ; false ; fi
+	mkdir -p build/pds-compiled
+	mkdir -p build/pds-compiled/assets
 	cp -r src/assets/css \
 		src/assets/javascript \
 		src/assets/images \
 		build/pds-compiled/assets 
 	rm -f build/pds-compiled/assets/css/README.md
+	cp build/package.json.tpl build/pds-compiled/package.json
+	@sed -i '' 's/##PACKAGE-NAME##/multipackage-compiled/' build/pds-compiled/package.json
 
 package-pds-source:
 	@echo
@@ -81,6 +84,8 @@ package-pds-source:
 		src/assets/images \
 		src/assets/sass \
 		build/pds-source/assets
+	cp build/package.json.tpl build/pds-source/package.json
+	@sed -i '' 's/##PACKAGE-NAME##/multipackage-source/' build/pds-source/package.json
 
 package-pds-docs:
 	@echo
@@ -88,7 +93,9 @@ package-pds-docs:
 	@if [ ! -f "src/docs/html/test.html" ] ; then echo "Compile html first" ; false ; fi
 	cp -r src/docs/html build/pds-docs
 	rm -f build/pds-docs/html/README.md
-	
+	cp build/package.json.tpl build/pds-docs/package.json
+	@sed -i '' 's/##PACKAGE-NAME##/multipackage-docs/' build/pds-docs/package.json
+
 release:
 
 	@if test -z "$(version)"; then echo "make release requires a semantic version"; false ; fi
