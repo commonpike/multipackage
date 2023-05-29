@@ -1,4 +1,10 @@
-version ?= version
+tag ?= tag
+
+semver = $(subst ., ,$(tag))
+major = $(word 1,$(semver))
+minor = $(word 2,$(semver))
+patch = $(word 3,$(semver))
+version = $(major).$(minor).$(patch)
 
 install:
 	@echo
@@ -77,7 +83,7 @@ packages:
 
 release:
 
-	@if test -z "$(version)"; then echo "make release requires a version"; false ; fi
+	@if test -z "$(version)"; then echo "make release requires a semantic version"; false ; fi
 	@if [ ! -d "build/pds-compiled/assets" ] ; then echo "build/pds-compiled not ready" ; false ; fi
 	@if [ ! -d "build/pds-source/assets" ] ; then echo "build/pds-source not ready" ; false ; fi
 	@if [ ! -d "build/pds-docs/html" ] ; then echo "build/pds-docs not ready" ; false ; fi
