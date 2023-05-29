@@ -9,7 +9,7 @@ version = $(major).$(minor).$(patch)
 packages = pds-compiled pds-source pds-docs
 
 # uncomment this on mac
-SEDFIX=''
+# SEDFIX=''
 
 test:
 	@echo $(tag) - $(semver) - $(version)
