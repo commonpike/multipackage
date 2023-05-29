@@ -9,7 +9,7 @@ version = $(major).$(minor).$(patch)
 packages = pds-compiled pds-source pds-docs
 
 # uncomment this on mac
-# SEDFIX=''
+SEDFIX=''
 
 test:
 	@echo $(tag) - $(semver) - $(version)
@@ -75,6 +75,7 @@ package-pds-docs:
 	@echo
 	@echo Building pds-docs ..
 	@if [ ! -f "src/docs/html/test.html" ] ; then echo "Compile html first" ; false ; fi
+	mkdir -p build/pds-docs
 	cp -r src/docs/html build/pds-docs
 	rm -f build/pds-docs/html/README.md
 	cp build/package.json.tpl build/pds-docs/package.json
